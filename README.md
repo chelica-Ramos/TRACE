@@ -1,4 +1,4 @@
-# 🏛️ TRACE (Taxpayer Resource Allocation & Expenditure Oversight)
+# TRACE (Taxpayer Resource Allocation & Expenditure Oversight)
 *Public Finance Intelligence & Local Bilingual AI Assistant Dashboard*
 
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://streamlit.io/)
@@ -8,25 +8,25 @@
 
 ---
 
-## 📌 Project Overview
-**TRACE** is an offline-capable data science dashboard and public finance intelligence tool designed to monitor and evaluate Department of Public Works and Highways (DPWH) project allocations and expenditures. By integrating advanced data cleaning, Natural Language Processing (NLP), and Machine Learning regression/classification models, the platform promotes transparent governance and data-driven oversight.
+## Project Overview
+**TRACE** is a data science dashboard and public finance intelligence tool designed to monitor and evaluate Department of Public Works and Highways (DPWH) project allocations and expenditures. By integrating advanced data cleaning, Natural Language Processing (NLP), and Machine Learning regression/classification models, the platform promotes transparent governance and data-driven oversight.
 
-It features **"Tracey"**, a localized, offline bilingual AI assistant (capable of conversing in both English and Tagalog) powered by Ollama, allowing users to seamlessly query project data and discuss analytical insights without requiring an active internet connection.
+It features **"Tracey"**, a localized bilingual AI assistant (capable of conversing in both English and Tagalog) powered by Ollama, allowing users to seamlessly query project data and discuss analytical insights directly within the application environment.
 
 ---
 
-## 🚀 Key Features
+## Key Features
 * **Executive Dashboard & Project Explorer:** Interactive filters for regional data, budget tracking, and physical progress metrics with a clean, professional user interface.
 * **NLP Preprocessing Pipeline:** Automated text cleaning, tokenization, stopword removal, lemmatization, POS tagging, and feature extraction (Binary, Count, and TF-IDF vectorization).
 * **Exploratory Data Analysis (EDA):** Visual insights including Word Clouds of project descriptions, budget distributions, allocated vs. actual expenditures, and status trends.
 * **Predictive Machine Learning Models:**
   * *Regression:* Simple and Multiple Linear Regression to analyze budget allocations against physical and financial progress ($R^2$, MAE, RMSE).
   * *Classification:* Logistic Regression, Random Forest, and Naive Bayes models to categorize projects and identify top descriptive keywords driving "Flagged for Review" statuses.
-* **Tracey Bilingual AI Chatbot:** Fully offline LLM assistant supporting contextual English and Tagalog interaction for friendly project navigation and insight explanation.
+* **TRACE Bilingual AI Chatbot:** Local LLM assistant supporting contextual English and Tagalog interaction for friendly project navigation and insight explanation.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 * **Frontend/UI:** Streamlit
 * **Data Processing & ML:** Pandas, NumPy, Scikit-Learn
 * **NLP & Text Analysis:** NLTK, spaCy, WordCloud, Matplotlib, Seaborn
@@ -34,7 +34,7 @@ It features **"Tracey"**, a localized, offline bilingual AI assistant (capable o
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 ```text
 TRACE/
 │
