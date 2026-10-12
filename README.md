@@ -1,4 +1,4 @@
-# 🏛️ T.R.A.C.E. (Taxpayer Resource Allocation & Expenditure Oversight)
+# 🏛️ TRACE (Taxpayer Resource Allocation & Expenditure Oversight)
 *Public Finance Intelligence & Local Bilingual AI Assistant Dashboard*
 
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://streamlit.io/)
@@ -9,7 +9,7 @@
 ---
 
 ## 📌 Project Overview
-**T.R.A.C.E.** is an offline-capable data science dashboard and public finance intelligence tool designed to monitor and evaluate Department of Public Works and Highways (DPWH) project allocations and expenditures. By integrating advanced data cleaning, Natural Language Processing (NLP), and Machine Learning regression/classification models, the platform promotes transparent governance and data-driven oversight.
+**TRACE** is an offline-capable data science dashboard and public finance intelligence tool designed to monitor and evaluate Department of Public Works and Highways (DPWH) project allocations and expenditures. By integrating advanced data cleaning, Natural Language Processing (NLP), and Machine Learning regression/classification models, the platform promotes transparent governance and data-driven oversight.
 
 It features **"Tracey"**, a localized, offline bilingual AI assistant (capable of conversing in both English and Tagalog) powered by Ollama, allowing users to seamlessly query project data and discuss analytical insights without requiring an active internet connection.
 
@@ -36,7 +36,7 @@ It features **"Tracey"**, a localized, offline bilingual AI assistant (capable o
 
 ## 📂 Project Structure
 ```text
-T.R.A.C.E./
+TRACE/
 │
 ├── app.py                     # Main Streamlit application
 ├── requirements.txt           # Python package dependencies
