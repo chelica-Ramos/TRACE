@@ -1,28 +1,44 @@
-# TRACE Budget Tracker
+# 🏛️ T.R.A.C.E. (Taxpayer Resource Allocation & Expenditure Oversight)
+*Public Finance Intelligence & Local Bilingual AI Assistant Dashboard*
 
-Executive Streamlit dashboard with custom metric cards and four tabs:
-Executive Dashboard, Project Explorer, AI Insights, and Tracey. Region/Year filters apply
-globally. Plotly provides interactive status donuts, grouped regional budget bars,
-unfinished-project TF-IDF keyword charts, and a prediction gauge. Linear regression
-predicts progress from Budget alone and trains dynamically without saved models.
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://streamlit.io/)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Ollama](https://img.shields.io/badge/Ollama-Local_LLM-black?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 
-Run the installed Python 3.13 environment:
+---
 
-```powershell
-.\.runtime\Scripts\python.exe -m streamlit run app.py
-```
+## 📌 Project Overview
+**T.R.A.C.E.** is an offline-capable data science dashboard and public finance intelligence tool designed to monitor and evaluate Department of Public Works and Highways (DPWH) project allocations and expenditures. By integrating advanced data cleaning, Natural Language Processing (NLP), and Machine Learning regression/classification models, the platform promotes transparent governance and data-driven oversight.
 
-For a fresh environment, use Python 3.11–3.14 and install requirements.txt.
-Place dpwh-projects-2026-10-06.csv beside app.py.
+It features **"Tracey"**, a localized, offline bilingual AI assistant (capable of conversing in both English and Tagalog) powered by Ollama, allowing users to seamlessly query project data and discuss analytical insights without requiring an active internet connection.
 
-Utilized Budget = Budget × Progress / 100 is an estimate based on physical
-progress, not measured payments. Amount Paid is dropped. On-Going means
-unfinished; delay cannot be established without planned deadlines and a reporting
-date. The dashboard tabs and regression model follow the Region/Year filters.
+---
 
-The earlier four-page version is preserved in app.previous.py.
+## 🚀 Key Features
+* **Executive Dashboard & Project Explorer:** Interactive filters for regional data, budget tracking, and physical progress metrics with a clean, professional user interface.
+* **NLP Preprocessing Pipeline:** Automated text cleaning, tokenization, stopword removal, lemmatization, POS tagging, and feature extraction (Binary, Count, and TF-IDF vectorization).
+* **Exploratory Data Analysis (EDA):** Visual insights including Word Clouds of project descriptions, budget distributions, allocated vs. actual expenditures, and status trends.
+* **Predictive Machine Learning Models:**
+  * *Regression:* Simple and Multiple Linear Regression to analyze budget allocations against physical and financial progress ($R^2$, MAE, RMSE).
+  * *Classification:* Logistic Regression, Random Forest, and Naive Bayes models to categorize projects and identify top descriptive keywords driving "Flagged for Review" statuses.
+* **Tracey Bilingual AI Chatbot:** Fully offline LLM assistant supporting contextual English and Tagalog interaction for friendly project navigation and insight explanation.
 
-Tracey uses local Ollama and llama3. Start Ollama before chatting. The app
-automatically downloads the model on the first prompt if missing; this requires
-internet. Subsequent conversations run offline. Tracey receives chat history,
-not the dashboard dataset or filters.
+---
+
+## 🛠️ Tech Stack
+* **Frontend/UI:** Streamlit
+* **Data Processing & ML:** Pandas, NumPy, Scikit-Learn
+* **NLP & Text Analysis:** NLTK, spaCy, WordCloud, Matplotlib, Seaborn
+* **Local AI / LLM:** Ollama (Local LLM Integration)
+
+---
+
+## 📂 Project Structure
+```text
+T.R.A.C.E./
+│
+├── app.py                     # Main Streamlit application
+├── requirements.txt           # Python package dependencies
+├── dpwh-projects-2026.csv     # Cleaned dataset
+└── README.md                  # Project documentation
