@@ -1,4 +1,5 @@
 {
+  "tracey_offline_missing_model": "Hindi pa naka-install ang llama3. Hindi ito mada-download sa offline mode. Kumonekta sa internet at patakbuhin ang `ollama pull llama3` nang isang beses, tapos i-restart ang TRACE offline.",
   "page_title": "TRACE | Gabay sa Budget",
   "language_label": "Wika",
   "language_en": "English",

@@ -1,0 +1,6 @@
+[browser]
+gatherUsageStats = false
+
+[theme]
+# Use system fonts; no Google Fonts download is needed.
+font = "Arial, sans-serif"

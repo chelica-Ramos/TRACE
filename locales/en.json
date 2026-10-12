@@ -1,4 +1,5 @@
 {
+  "tracey_offline_missing_model": "llama3 is not installed. Offline mode cannot download it. Connect to the internet and run `ollama pull llama3` once, then restart TRACE offline.",
   "page_title": "TRACE | Budget Intelligence",
   "language_label": "Language",
   "language_en": "English",

@@ -5,6 +5,7 @@ Technical terms and proper names intentionally remain in English where natural.
 
 | Key | English | Tagalog |
 | --- | --- | --- |
+| `tracey_offline_missing_model` | llama3 is not installed. Offline mode cannot download it. Connect to the internet and run `ollama pull llama3` once, then restart TRACE offline. | Hindi pa naka-install ang llama3. Hindi ito mada-download sa offline mode. Kumonekta sa internet at patakbuhin ang `ollama pull llama3` nang isang beses, tapos i-restart ang TRACE offline. |
 | `page_title` | TRACE \| Budget Intelligence | TRACE \| Gabay sa Budget |
 | `language_label` | Language | Wika |
 | `language_en` | English | English |

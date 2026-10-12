@@ -117,6 +117,8 @@ def ensure_tracey_model(client):
     except ollama.ResponseError as error:
         if error.status_code != 404:
             raise
+    if os.environ.get('TRACE_OFFLINE') == '1':
+        raise RuntimeError(t('tracey_offline_missing_model'))
     executable = shutil.which('ollama')
     if executable is None:
         raise RuntimeError(t("tracey_missing_path"))

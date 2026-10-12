@@ -6,6 +6,31 @@
 [![Scikit-Learn](https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![Ollama](https://img.shields.io/badge/Ollama-Local_LLM-black?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 
+## Run offline on this computer
+
+Double-click **Start TRACE Offline.cmd**, then open **http://localhost:8503**.
+Keep the launcher window open while using the app. Press Ctrl+C to stop it.
+The launcher checks the installed packages and local `llama3` model, starts
+Ollama if needed, and runs Streamlit on localhost without model downloads or
+usage telemetry. The dashboard, EN/TL switch, mascot, and chatbot run locally.
+
+Check readiness without starting the app:
+
+```powershell
+.\.runtime\Scripts\python.exe scripts\run_offline.py --check
+```
+
+On another computer, download this repository, install Python dependencies
+from `requirements.txt`, install Ollama, and run `ollama pull llama3` while
+online once. After that setup, no internet is required. GitHub hosts the source;
+the offline app runs on your computer and needs its local Python/Ollama services.
+
+Executive Streamlit dashboard with custom metric cards and four tabs:
+Executive Dashboard, Project Explorer, AI Insights, and Tracey. Region/Year filters apply
+globally. Plotly provides interactive status donuts, grouped regional budget bars,
+unfinished-project TF-IDF keyword charts, and a prediction gauge. Linear regression
+predicts progress from Budget alone and trains dynamically without saved models.
+
 ---
 
 ## Project Overview
@@ -42,3 +67,5 @@ TRACE/
 ├── requirements.txt           # Python package dependencies
 ├── dpwh-projects-2026.csv     # Cleaned dataset
 └── README.md                  # Project documentation
+
+```
