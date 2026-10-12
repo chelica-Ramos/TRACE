@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tracey, the T.R.A.C.E. helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6f5f2;--card:#fff;--ink:#12304a;--muted:#4d6b80;--teal:#1fa59a;--tealdk:#0e7f76;--sun:#ffc83d;--line:#c5e3de;--user:#1fa59a;--usertx:#fff;--bot:#f1faf8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f2230;--card:#17303f;--ink:#e6f3f1;--muted:#9fbac6;--line:#2a4a5b;--bot:#1d3a4a;--user:#1b8f86}}
+:root[data-theme="dark"]{--bg:#0f2230;--card:#17303f;--ink:#e6f3f1;--muted:#9fbac6;--line:#2a4a5b;--bot:#1d3a4a;--user:#1b8f86}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.5;min-height:100vh}
+h1,.name{font-family:'Baloo 2','Nunito',system-ui,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:800px){.wrap{grid-template-columns:260px 1fr;align-items:start;padding-top:36px}.side{position:sticky;top:24px}}
+.side{text-align:center}
+.side h1{font-size:2rem;margin:4px 0 0;line-height:1.1}
+.side p{color:var(--muted);margin:6px 0 0;font-size:.95rem;max-width:30ch;margin-inline:auto}
+svg.tars{width:min(220px,55vw);height:auto;overflow:visible}
+.tars .lid{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+.tars .mouth-talk{display:none}
+.talking .mouth-idle{display:none}.talking .mouth-talk{display:block;animation:yap .28s infinite alternate}
+.talking svg.tars{animation:hop .5s ease-out}
+@keyframes blink{0%,94%,100%{transform:scaleY(0)}96%{transform:scaleY(1)}}
+@keyframes yap{to{transform:scaleY(.4)}}
+@keyframes hop{40%{transform:translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.tars *,svg.tars{animation:none!important}}
+.chat{background:var(--card);border:2px solid var(--line);border-radius:22px;display:flex;flex-direction:column;height:min(640px,calc(100vh - 40px));overflow:hidden}
+.log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:10px 14px;border-radius:18px;white-space:pre-wrap;overflow-wrap:anywhere}
+.bot{background:var(--bot);border-bottom-left-radius:5px;align-self:flex-start}
+.me{background:var(--user);color:var(--usertx);border-bottom-right-radius:5px;align-self:flex-end}
+.dots span{display:inline-block;width:7px;height:7px;margin-right:4px;border-radius:50%;background:var(--muted);animation:dot 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{transform:translateY(-4px);opacity:.5}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 12px}
+.chip{font:inherit;font-size:.88rem;padding:6px 12px;border-radius:999px;border:2px solid var(--teal);background:transparent;color:var(--ink);cursor:pointer}
+.chip:hover{background:var(--teal);color:#fff}
+form.row{display:flex;gap:8px;padding:12px;border-top:2px solid var(--line)}
+input{flex:1;min-width:0;font:inherit;padding:10px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+button.send{font:inherit;font-weight:600;border:0;border-radius:999px;padding:0 20px;background:var(--sun);color:#3a2b00;cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.note{font-size:.8rem;color:var(--muted);text-align:center;padding:0 12px 10px}
+</style>
+</head>
+<body>
+<main class="wrap" id="app">
+<section class="side">
+<svg class="tars" viewBox="0 0 200 210" role="img" aria-label="Tracey the girl tarsier construction worker in a yellow hard hat and orange safety vest, holding a magnifying glass">
+<ellipse cx="100" cy="196" rx="52" ry="7" fill="#12304a" opacity=".12"/>
+<ellipse cx="46" cy="62" rx="22" ry="28" fill="#a87650" transform="rotate(-18 46 62)"/>
+<ellipse cx="154" cy="62" rx="22" ry="28" fill="#a87650" transform="rotate(18 154 62)"/>
+<ellipse cx="46" cy="62" rx="12" ry="17" fill="#ffb3c4" transform="rotate(-18 46 62)"/>
+<ellipse cx="154" cy="62" rx="12" ry="17" fill="#ffb3c4" transform="rotate(18 154 62)"/>
+<ellipse cx="100" cy="150" rx="46" ry="42" fill="#c18f63"/>
+<ellipse cx="100" cy="160" rx="28" ry="28" fill="#e8c9a3"/>
+<path d="M56 132 Q100 118 144 132 L151 174 Q100 202 49 174 Z" fill="#ff7a1a"/>
+<path d="M52 158 Q100 170 148 158 L149 167 Q100 179 51 167 Z" fill="#eaf7ff"/>
+<path d="M100 134 L100 192" stroke="#d85d00" stroke-width="3"/>
+<circle cx="90" cy="150" r="2.4" fill="#d85d00"/><circle cx="110" cy="150" r="2.4" fill="#d85d00"/>
+<ellipse cx="100" cy="92" rx="66" ry="60" fill="#c18f63"/>
+<circle cx="66" cy="92" r="31" fill="#fff"/><circle cx="134" cy="92" r="31" fill="#fff"/>
+<circle cx="68" cy="94" r="21" fill="#12304a"/><circle cx="132" cy="94" r="21" fill="#12304a"/>
+<circle cx="75" cy="86" r="8" fill="#fff"/><circle cx="139" cy="86" r="8" fill="#fff"/>
+<circle cx="62" cy="102" r="3.5" fill="#fff"/><circle cx="126" cy="102" r="3.5" fill="#fff"/>
+<circle cx="66" cy="92" r="32" fill="#c18f63" class="lid"/><circle cx="134" cy="92" r="32" fill="#c18f63" class="lid"/>
+<g stroke="#12304a" stroke-width="3.5" stroke-linecap="round"><path d="M42 70 L33 61"/><path d="M36 82 L26 78"/><path d="M158 70 L167 61"/><path d="M164 82 L174 78"/></g>
+<path d="M40 55 C36 0 164 0 160 55 Z" fill="#ffc83d"/>
+<rect x="89" y="6" width="22" height="49" fill="#f2a900"/>
+<ellipse cx="68" cy="26" rx="11" ry="5" fill="#fff" opacity=".55" transform="rotate(-28 68 26)"/>
+<circle cx="100" cy="34" r="8.5" fill="#fff" stroke="#f2a900" stroke-width="2.5"/>
+<text x="100" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="#d98400" font-family="Baloo 2,sans-serif">₱</text>
+<ellipse cx="100" cy="55" rx="68" ry="9" fill="#f2a900"/><ellipse cx="100" cy="52" rx="64" ry="6" fill="#ffd24a"/>
+<ellipse cx="100" cy="122" rx="8" ry="5.5" fill="#12304a"/>
+<path class="mouth-idle" d="M88 134 Q100 144 112 134" fill="none" stroke="#12304a" stroke-width="3.5" stroke-linecap="round"/>
+<g class="mouth-talk" style="transform-origin:100px 136px"><ellipse cx="100" cy="138" rx="10" ry="8" fill="#12304a"/><ellipse cx="100" cy="142" rx="5" ry="3.5" fill="#ff8da6"/></g>
+<ellipse cx="42" cy="124" rx="11" ry="7" fill="#ff9eb5" opacity=".75"/><ellipse cx="158" cy="124" rx="11" ry="7" fill="#ff9eb5" opacity=".75"/>
+<path d="M142 168 L170 138" stroke="#0e7f76" stroke-width="7" stroke-linecap="round"/>
+<circle cx="176" cy="130" r="20" fill="#d9f3ef" fill-opacity=".7" stroke="#ffc83d" stroke-width="6"/>
+<text x="176" y="137" text-anchor="middle" font-size="19" font-weight="700" fill="#b78400" font-family="Baloo 2,sans-serif">₱</text>
+<ellipse cx="128" cy="170" rx="13" ry="10" fill="#a87650"/>
+</svg>
+<h1 class="name">Tracey</h1>
+<p>Hard hat on! I'm your T.R.A.C.E. site helper. Ask me about our research on tracking government funds.</p>
+</section>
+<section class="chat" aria-label="Chat with Tracey">
+<div class="log" id="log" aria-live="polite"></div>
+<div class="chips" id="chips"></div>
+<form class="row" id="form"><input id="q" autocomplete="off" placeholder="Ask about our project…" aria-label="Your question"><button class="send" type="submit">Send</button></form>
+<div class="note">Tracey answers from our project notes (not AI). Check the notebook for real results.</div>
+</section>
+</main>
+<script>
+const KB=[
+{k:['hi','hello','hey','kumusta','musta','good morning','good afternoon'],a:"Kumusta! I'm Tracey the tarsier. Hard hat on! I inspect where public money goes, and the DPWH projects are my work site. What do you want to know about T.R.A.C.E.?"},
+{k:['thank','salamat'],a:"Walang anuman! Ask me anything else about the project."},
+{k:['trace','project','title','stands for'],a:"T.R.A.C.E. means Taxpayer Resource Allocation & Expenditure Oversight.\nIt is Group 3's Python project for DS001 (section DS11S1). We study how Philippine government funds are allocated and spent, estimate how much of a budget gets used, and flag items that may need a closer look."},
+{k:['sdg','goal','sustainable','16','17','9'],a:"We anchor the project on three UN Sustainable Development Goals:\nSDG 16: strong institutions, which needs transparency and accountability.\nSDG 17: partnerships, like open data shared between government, civic tech, and students.\nSDG 9: infrastructure, which is what the DPWH data is about."},
+{k:['data','dataset','source','where','saan'],a:"Budget data: DPWH Transparency Portal project records (mirrored by BetterGov.PH on Hugging Face), 2018 to 2025.\nText data: captions from Senate and House budget hearings on YouTube.\nContext: COA audit reports, DBM's GAA, and DPWH BAR reports."},
+{k:['year','2018','2025','coverage','period','2014','when'],a:"Our coverage is 2018 to 2025. The hearing videos we found so far are only from 2025 and 2026, so the hearing text covers fewer years than the budget data."},
+{k:['utilization','utilisation','rate','spent','absorptive'],a:"Utilization rate = how much of a budget was actually used. Public DPWH data often shows zero for amount paid, so when most rows lack it we use progress / 100 instead. That makes it a proxy, not an audited figure. We say so in our limitations."},
+{k:['label','flag','review','class','underutilized','fully','threshold'],a:"Each group of projects (region × year × program) gets a label:\nreview: 5% or more of its budget is in terminated projects.\nfully_utilized: utilization is 95% or higher.\nunderutilized: everything else.\nA 'review' flag only means \"look closer\". It does not mean anyone did something wrong."},
+{k:['nlp','text','preprocess','pipeline','natural language'],a:"Our text pipeline: clean the text, tokenize, remove stopwords, lemmatize, tag parts of speech, then turn words into numbers with binary encoding, counting, and TF-IDF. We run it on project descriptions and hearing captions."},
+{k:['tf-idf','tfidf','idf'],a:"TF-IDF gives a word a high score when it appears often in one document but rarely in the others. So it highlights what makes a region, year, or hearing different, instead of just common words."},
+{k:['lemma','lemmatization','lemmatize'],a:"Lemmatization turns words into their base form: \"delayed\" and \"delays\" both become \"delay\". Then we count them as the same word."},
+{k:['stopword','stop word'],a:"Stopwords are very common words like \"the\" and \"and\" (plus Filipino ones like \"ang\" and \"sa\") that carry little meaning. We remove them so real topics stand out."},
+{k:['pos','part of speech','tagging','noun','verb'],a:"POS tagging labels each word as a noun, verb, and so on. We use it to see which nouns and verbs show up most in flagged groups."},
+{k:['token'],a:"Tokenization splits text into separate words (tokens) so we can clean and count them one by one."},
+{k:['binary','count','encoding','vector'],a:"Binary encoding marks whether a word appears (1) or not (0). Counting records how many times it appears. TF-IDF weights those counts by how special the word is."},
+{k:['regression','linear','predict','r2','mae','rmse'],a:"Simple linear regression: allocation → utilization rate.\nMultiple linear regression: adds year, number of projects, category mix, program, and region (and a few text features).\nWe judge both with R², MAE, and RMSE on test data."},
+{k:['classification','classifier','model','logistic','forest','tree','naive','accuracy','confusion'],a:"We try logistic regression, a decision tree, a random forest, and naive Bayes (text only). We report accuracy, a confusion matrix, precision, recall, and F1, and compare against always guessing the most common class."},
+{k:['leak','leakage'],a:"The labels come from utilization and terminated share, so we keep those out of the classifier's features. Otherwise accuracy would look perfect for the wrong reason."},
+{k:['limit','weak','problem','bias','challenge','delimitation'],a:"Our main limits:\n• Utilization is a proxy (progress or recorded payments).\n• Hearings link to budgets by year only, not by line item.\n• Captions are noisy, have no speaker names, and mix English and Filipino.\n• Thresholds are our own choice.\n• Grouped data means a modest number of rows."},
+{k:['hearing','transcript','caption','youtube','senate','house'],a:"We pull auto-generated captions from public Senate and House hearings on DPWH budgets, split them into one-minute segments, and analyze the words. We link them to budget data by year."},
+{k:['notebook','colab','run','code','how to'],a:"Open TRACE_DPWH_Notebook.ipynb in Google Colab and run the cells from top to bottom. It downloads the data, cleans it, runs the NLP, regression, and classification, and draws the charts."},
+{k:['dpwh','agency','public works'],a:"We focus on the Department of Public Works and Highways (DPWH) because its project-level data is public and covers 2018 to 2025."},
+{k:['coa','audit','dbm','gaa'],a:"COA audit reports and DBM's GAA are reference sources. We use them to check totals and give context, but we don't load them into the code."},
+{k:['recommend','suggest','improve'],a:"Our recommendations: publish complete payment data for every project, publish hearing transcripts with speaker names, link budget items, projects, and audit findings with shared IDs, and offer simple dashboards for citizens."},
+{k:['who','group','team','section','class','course'],a:"We're Group 3 from section DS11S1, College of Computer Studies, for DS001 Computer Programming 1 (Python)."}
+];
+const CHIPS=['What is T.R.A.C.E.?','What data do we use?','How do we flag items?','What are the limits?','Explain TF-IDF'];
+const log=document.getElementById('log'),form=document.getElementById('form'),q=document.getElementById('q'),app=document.getElementById('app');
+function add(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+function norm(s){return ' '+s.toLowerCase().replace(/\./g,'').replace(/[^a-z0-9\-\s]/g,' ')+' '}
+function answer(t){
+  const n=norm(t);let best=null,score=0;
+  KB.forEach(e=>{let s=0;e.k.forEach(k=>{const kk=k.length<=3?' '+k+' ':k;if(n.includes(kk))s+=k.length>3?2:1});if(s>score){score=s;best=e}});
+  return best?best.a:"Hmm, I don't have that in my notes yet. Try asking about our data, years, labels, NLP steps, regression, classification, or limitations.";
+}
+function say(text){
+  const d=add('','bot');d.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';
+  app.classList.add('talking');
+  setTimeout(()=>{d.textContent=text;log.scrollTop=log.scrollHeight;setTimeout(()=>app.classList.remove('talking'),Math.min(2200,text.length*18))},550);
+}
+function ask(t){t=t.trim();if(!t)return;add(t,'me');say(answer(t))}
+form.addEventListener('submit',e=>{e.preventDefault();ask(q.value);q.value=''});
+const chips=document.getElementById('chips');
+CHIPS.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=c;b.onclick=()=>ask(c);chips.appendChild(b)});
+say("Kumusta! I'm Tracey. I help trace where public money goes. Pick a question below or type your own.");
+</script>
+</body>
+</html>

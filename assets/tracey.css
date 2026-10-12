@@ -1,0 +1,34 @@
+.tracey {overflow:visible; width:100%; height:auto; display:block; transform-box:fill-box; transform-origin:center; animation:tracey-bob 3s ease-in-out infinite}
+.tracey .lid {transform-box:fill-box; transform-origin:center; transform:scaleY(0); animation:tracey-blink 4.6s infinite}
+.tracey .hat {transform-box:fill-box; transform-origin:center bottom; animation:tracey-hat 8s ease-in-out infinite}
+.tracey .arm {transform-box:fill-box; transform-origin:left bottom}
+.tracey .pupils {transform-box:fill-box; transform-origin:center; transition:transform .3s}
+.tracey .mouth-talk {display:none; transform-box:fill-box; transform-origin:center!important}
+.tracey-thinking .pupils {transform:translate(3px,-4px)}
+.tracey-thinking .arm {animation:tracey-sway 1.8s ease-in-out infinite}
+.tracey-talking .mouth-idle {display:none}
+.tracey-talking .mouth-talk {display:block; animation:tracey-mouth .3s ease-in-out infinite alternate}
+.tracey-happy .tracey {animation:tracey-hop .65s ease-out}
+.tracey-happy .hat {animation:tracey-hat-hop .65s ease-out}
+.tracey-interactive {cursor:pointer; border:0; background:transparent; padding:0; display:block; border-radius:12px}
+.tracey-interactive:focus-visible {outline:3px solid #0e7f76; outline-offset:3px}
+.tracey-head {transform-box:fill-box; transform-origin:center bottom; transition:transform .3s}
+.tracey-interactive:hover .tracey-head {transform:rotate(-3deg)}
+.tracey-interactive:hover .arm {animation:tracey-wave .8s ease-in-out infinite}
+.tracey-stage {position:relative; margin:10px auto; max-width:calc(100vw - 48px)}
+.tracey-bubble {display:none; position:absolute; right:-4px; top:12%; background:#fff; color:#12304a; border:1px solid #0e7f76; border-radius:14px; padding:0 7px; font:700 18px system-ui}
+.tracey-thinking .tracey-bubble {display:block}
+.tracey-line {font:14px/1.5 system-ui; text-align:center; color:inherit; margin:10px 0 0; overflow-wrap:anywhere}
+@keyframes tracey-bob {50% {transform:translateY(-5px)}}
+@keyframes tracey-blink {0%,93%,100% {transform:scaleY(0)} 96% {transform:scaleY(1)}}
+@keyframes tracey-hat {0%,90%,100% {transform:rotate(0)} 94% {transform:rotate(-2deg)} 97% {transform:rotate(2deg)}}
+@keyframes tracey-sway {0%,100% {transform:rotate(-5deg)} 50% {transform:rotate(5deg)}}
+@keyframes tracey-wave {0%,100% {transform:rotate(0)} 50% {transform:rotate(-12deg)}}
+@keyframes tracey-mouth {to {transform:scaleY(.4)}}
+@keyframes tracey-hop {40% {transform:translateY(-9px)} 70% {transform:translateY(1px)}}
+@keyframes tracey-hat-hop {40% {transform:translateY(-4px) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce) {
+ .tracey,.tracey * {animation:none!important; transition:none!important; rotate:none!important}
+ .tracey .lid {transform:scaleY(0)!important}
+ .tracey-interactive:hover .tracey-head {transform:none}
+}

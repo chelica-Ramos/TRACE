@@ -1,0 +1,34 @@
+<svg class="tracey" viewBox="0 0 200 210" role="img" aria-label="Tracey the tarsier construction worker" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="100" cy="196" rx="52" ry="7" fill="#12304a" opacity=".12"/>
+<ellipse cx="46" cy="62" rx="22" ry="28" fill="#a87650" transform="rotate(-18 46 62)"/>
+<ellipse cx="154" cy="62" rx="22" ry="28" fill="#a87650" transform="rotate(18 154 62)"/>
+<ellipse cx="46" cy="62" rx="12" ry="17" fill="#ffb3c4" transform="rotate(-18 46 62)"/>
+<ellipse cx="154" cy="62" rx="12" ry="17" fill="#ffb3c4" transform="rotate(18 154 62)"/>
+<ellipse cx="100" cy="150" rx="46" ry="42" fill="#c18f63"/>
+<ellipse cx="100" cy="160" rx="28" ry="28" fill="#e8c9a3"/>
+<path d="M56 132 Q100 118 144 132 L151 174 Q100 202 49 174 Z" fill="#ff7a1a"/>
+<path d="M52 158 Q100 170 148 158 L149 167 Q100 179 51 167 Z" fill="#eaf7ff"/>
+<path d="M100 134 L100 192" stroke="#d85d00" stroke-width="3"/>
+<circle cx="90" cy="150" r="2.4" fill="#d85d00"/><circle cx="110" cy="150" r="2.4" fill="#d85d00"/>
+<ellipse cx="100" cy="92" rx="66" ry="60" fill="#c18f63"/>
+<circle cx="66" cy="92" r="31" fill="#fff"/><circle cx="134" cy="92" r="31" fill="#fff"/>
+<g class="pupils"><circle cx="68" cy="94" r="21" fill="#12304a"/><circle cx="132" cy="94" r="21" fill="#12304a"/>
+<circle cx="75" cy="86" r="8" fill="#fff"/><circle cx="139" cy="86" r="8" fill="#fff"/>
+<circle cx="62" cy="102" r="3.5" fill="#fff"/><circle cx="126" cy="102" r="3.5" fill="#fff"/></g>
+<circle cx="66" cy="92" r="32" fill="#c18f63" class="lid"/><circle cx="134" cy="92" r="32" fill="#c18f63" class="lid"/>
+<g stroke="#12304a" stroke-width="3.5" stroke-linecap="round"><path d="M42 70 L33 61"/><path d="M36 82 L26 78"/><path d="M158 70 L167 61"/><path d="M164 82 L174 78"/></g>
+<g class="hat"><path d="M40 55 C36 0 164 0 160 55 Z" fill="#ffc83d"/>
+<rect x="89" y="14.5" width="22" height="41" fill="#f2a900"/>
+<ellipse cx="68" cy="26" rx="11" ry="5" fill="#fff" opacity=".55" transform="rotate(-28 68 26)"/>
+<circle cx="100" cy="34" r="8.5" fill="#fff" stroke="#f2a900" stroke-width="2.5"/>
+<text x="100" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="#d98400">₱</text>
+<ellipse cx="100" cy="55" rx="68" ry="9" fill="#f2a900"/><ellipse cx="100" cy="52" rx="64" ry="6" fill="#ffd24a"/></g>
+<ellipse cx="100" cy="122" rx="8" ry="5.5" fill="#12304a"/>
+<path class="mouth-idle" d="M88 134 Q100 144 112 134" fill="none" stroke="#12304a" stroke-width="3.5" stroke-linecap="round"/>
+<g class="mouth-talk" style="transform-origin:100px 136px"><ellipse cx="100" cy="138" rx="10" ry="8" fill="#12304a"/><ellipse cx="100" cy="142" rx="5" ry="3.5" fill="#ff8da6"/></g>
+<ellipse cx="42" cy="124" rx="11" ry="7" fill="#ff9eb5" opacity=".75"/><ellipse cx="158" cy="124" rx="11" ry="7" fill="#ff9eb5" opacity=".75"/>
+<g class="arm"><path d="M142 168 L170 138" stroke="#0e7f76" stroke-width="7" stroke-linecap="round"/>
+<circle cx="176" cy="130" r="20" fill="#d9f3ef" fill-opacity=".7" stroke="#ffc83d" stroke-width="6"/>
+<text x="176" y="137" text-anchor="middle" font-size="19" font-weight="700" fill="#b78400">₱</text>
+<ellipse cx="128" cy="170" rx="13" ry="10" fill="#a87650"/></g>
+</svg>
