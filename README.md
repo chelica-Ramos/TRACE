@@ -8,6 +8,12 @@
 
 ## Run offline on this computer
 
+If Ollama is unavailable (including on Streamlit Cloud), the Tracey tab keeps
+working and shows a clearly labeled built-in fallback in the selected EN/TL
+language. It preserves the conversation and any partial streamed reply. Start
+Ollama locally and submit another message to retry normal AI responses.
+The fallback gives general guidance; it does not generate project analysis.
+
 Double-click **Start TRACE Offline.cmd**, then open **http://localhost:8503**.
 Keep the launcher window open while using the app. Press Ctrl+C to stop it.
 The launcher checks the installed packages and local `llama3` model, starts

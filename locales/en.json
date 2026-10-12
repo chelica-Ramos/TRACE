@@ -1,4 +1,6 @@
 {
+  "tracey_fallback_notice": "Tracey’s local AI is unavailable right now, so this is a built-in fallback message. Your conversation is safe and the dashboard still works. On your computer, start Ollama (`ollama serve`) and check that llama3 is installed. Streamlit Cloud cannot reach Ollama on your computer through localhost. Send another message after Ollama is available to retry.",
+  "tracey_fallback_response": "I can’t generate an AI answer right now. You can still explore the Executive Dashboard, Project Explorer, and AI Insights. Remember: estimated utilization is Budget × Progress / 100; actual payment data is unavailable. This fallback does not analyze individual projects or make up budget figures.",
   "tracey_offline_missing_model": "llama3 is not installed. Offline mode cannot download it. Connect to the internet and run `ollama pull llama3` once, then restart TRACE offline.",
   "page_title": "TRACE | Budget Intelligence",
   "language_label": "Language",

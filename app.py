@@ -1,6 +1,7 @@
 """TRACE executive dashboard. Run: streamlit run app.py"""
 from pathlib import Path
 import html
+import logging
 import os
 import shutil
 import subprocess
@@ -107,7 +108,11 @@ TRACEY_PERSONA = (
 
 @st.cache_resource
 def get_tracey_client():
-    return ollama.Client(host='http://127.0.0.1:11434', trust_env=False, timeout=300.0)
+    # Fail fast when localhost is unavailable, while allowing model generation
+    # enough time on slower computers. httpx is an existing Ollama dependency.
+    import httpx
+    return ollama.Client(host='http://127.0.0.1:11434', trust_env=False,
+                         timeout=httpx.Timeout(300.0, connect=3.0, pool=3.0))
 
 
 def ensure_tracey_model(client):
@@ -138,11 +143,9 @@ def ensure_tracey_model(client):
 
 
 def render_tracey_tab():
-    if ollama is None:
-        st.subheader(t("tracey_title"))
-        st.error(t("tracey_missing_package"))
-        return
     st.subheader(t("tracey_title"))
+    if ollama is None:
+        st.info(t("tracey_missing_package"))
     st.caption(t("tracey_local"))
     if 'messages' not in st.session_state:
         st.session_state.messages = []
@@ -174,7 +177,10 @@ def render_tracey_tab():
         with st.chat_message('assistant', avatar=tracey_avatar()):
             mascot_state = st.empty()
             mascot_state.markdown('<span class="tracey-response-thinking" aria-hidden="true">...</span>', unsafe_allow_html=True)
+            received_parts = []
             try:
+                if ollama is None:
+                    raise RuntimeError('Ollama Python package is unavailable')
                 client = get_tracey_client()
                 ensure_tracey_model(client)
                 with st.spinner(t("tracey_thinking")):
@@ -183,22 +189,25 @@ def render_tracey_tab():
                 mascot_state.markdown('<span class="tracey-response-talking" aria-hidden="true"></span>', unsafe_allow_html=True)
                 def reply_chunks():
                     if first_chunk is not None:
-                        yield first_chunk['message']['content']
+                        content = first_chunk['message']['content']
+                        received_parts.append(content)
+                        yield content
                     for chunk in response:
-                        yield chunk['message']['content']
+                        content = chunk['message']['content']
+                        received_parts.append(content)
+                        yield content
                 answer = st.write_stream(reply_chunks())
                 if not answer or not answer.strip():
                     raise RuntimeError(t("tracey_empty_response"))
                 st.session_state.messages.append({'role': 'assistant', 'content': answer})
-            except ConnectionError:
-                st.error(t("tracey_connection_error"))
-                st.session_state.messages.pop()
-            except ollama.ResponseError as error:
-                st.error(t('tracey_ollama_error', error=error.error))
-                st.session_state.messages.pop()
             except Exception as error:
-                st.error(t('tracey_request_error', error=error))
-                st.session_state.messages.pop()
+                logging.getLogger(__name__).warning('Tracey fallback activated: %s', type(error).__name__)
+                st.info(t('tracey_fallback_notice'))
+                fallback = t('tracey_fallback_response')
+                st.write(fallback)
+                partial = ''.join(received_parts).strip()
+                answer = (partial + '\n\n' if partial else '') + t('tracey_fallback_notice') + '\n\n' + fallback
+                st.session_state.messages.append({'role': 'assistant', 'content': answer})
             finally:
                 mascot_state.markdown('<span class="tracey-response-idle" aria-hidden="true"></span>', unsafe_allow_html=True)
 

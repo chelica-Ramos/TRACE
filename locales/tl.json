@@ -1,4 +1,6 @@
 {
+  "tracey_fallback_notice": "Hindi available ngayon ang local AI ni Tracey, kaya built-in fallback message ito. Naka-save pa rin ang usapan mo at gumagana pa rin ang dashboard. Sa computer mo, buksan ang Ollama (`ollama serve`) at tiyaking naka-install ang llama3. Hindi maaabot ng Streamlit Cloud ang Ollama sa computer mo gamit ang localhost. Magpadala ulit ng mensahe kapag available na ang Ollama para subukan ulit.",
+  "tracey_fallback_response": "Hindi ako makagawa ng AI answer ngayon. Puwede mo pa ring gamitin ang Executive Dashboard, Hanap ng Project, at AI Insights. Tandaan: ang tantiyang utilization ay Budget × Progress / 100; walang available na data ng aktuwal na bayad. Hindi sinusuri ng fallback na ito ang bawat project at hindi ito nag-iimbento ng budget figures.",
   "tracey_offline_missing_model": "Hindi pa naka-install ang llama3. Hindi ito mada-download sa offline mode. Kumonekta sa internet at patakbuhin ang `ollama pull llama3` nang isang beses, tapos i-restart ang TRACE offline.",
   "page_title": "TRACE | Gabay sa Budget",
   "language_label": "Wika",
